@@ -4,7 +4,7 @@ before_script:
   - echo "Before script section"
   - echo "For example you might run an update here or install a build dependency"
   - echo "Or perhaps you might print out some debugging details"
-  - ping -c 5 127.0.0.1
+  - ip addr
 
 
 after_script:
@@ -16,14 +16,14 @@ build1:
   stage: build
   script:
     - echo "Do your build here"
-    - ps -ef
+    - ps -ef > a.txt
 
 test1:
   stage: test
   script:
     - echo "Do a test here"
     - echo "For example run a test suite"
-    - ping -c 11 127.0.0.1
+    - cat a.txt
 
 test2:
   stage: test
