@@ -9,12 +9,12 @@ before_script:
 after_script:
   - echo "After script section"
   - echo "For example you might do some cleanup here"
-  - ping -c 5 127.0.0.1
+  
 
 build1:
   stage: build
   script:
-    - mvn package
+    - mvn package -Dmaven.test.skip=true
 
 test1:
   stage: test
@@ -32,4 +32,4 @@ deploy1:
   stage: deploy
   script:
     - echo "Do your deploy here"
-    - ping -c 20 127.0.0.1
+    - ls -al
