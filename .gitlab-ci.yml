@@ -1,24 +1,22 @@
-image: maven:3.8-openjdk-8-slim
-
-before_script:
-  - echo "Before script section"
-  - echo "For example you might run an update here or install a build dependency"
-  - echo "Or perhaps you might print out some debugging details"
-
-after_script:
-  - echo "After script section"
-  - echo "For example you might do some cleanup here"
-
-
 build1:
   stage: build
+  image: maven:3.8-openjdk-8-slim
   script:
     - mvn package -Dmaven.test.skip=true
-    - java -jar target/demo-0.0.1-SNAPSHOT.jar
+  artifacts:
+    paths:
+      - target/*.jar
 
 test1:
   stage: test
+  image: docker:stable
+  before_script:
+    - source .${CI_COMMIT_REF_NAME}.env
   script:
+    - ls -al
+    - docker build
+    - docker login
+    - docker push
     - echo "Do a test here"
     - echo "For example run a                                                                                                 test suite"
 
@@ -32,7 +30,5 @@ deploy1:
   stage: deploy
   image: istio/kubectl:1.5.10
   script:
-    - whoami
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
-    - kubectl version
     - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","image":"nginx:1.7.9","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
