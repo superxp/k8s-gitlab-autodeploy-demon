@@ -30,7 +30,7 @@ test2:
 
 deploy1:
   stage: deploy
-  image: kubectl:v1.18.5
+  image: bitnami/kubectl:latest
   script:
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - kubectl version
