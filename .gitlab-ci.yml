@@ -6,7 +6,7 @@ before_script:
   - echo "Or perhaps you might print out some debugging details"
   - ip addr
   - pwd
-  - ls -al /tmp/
+  - whoami
 
 
 
@@ -19,22 +19,18 @@ build1:
   stage: build
   script:
     - echo "Do your build here"
-    - ps -ef > /tmp/a.txt
 
 test1:
   stage: test
   script:
     - echo "Do a test here"
     - echo "For example run a test suite"
-    - ls -al /tmp
-    - cat /tmp/a.txt
 
 test2:
   stage: test
   script:
     - echo "Do another parallel test here"
     - echo "For example run a lint test"
-    - cat /tmp/a.txt
 
 deploy1:
   stage: deploy
