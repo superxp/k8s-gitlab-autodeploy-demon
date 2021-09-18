@@ -32,6 +32,7 @@ deploy1:
   stage: deploy
   image: bitnami/kubectl:latest
   script:
+    - whoami
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - kubectl version
     - kubectl -n xiaopang patch deployment nginx -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
