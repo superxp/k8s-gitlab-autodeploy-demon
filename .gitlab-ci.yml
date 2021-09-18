@@ -35,4 +35,4 @@ deploy1:
     - whoami
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - kubectl version
-    - kubectl -n xiaopang patch deployment nginx -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","image":"nginx:1.7.9","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
+    - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","image":"nginx:1.7.9","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
