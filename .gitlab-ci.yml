@@ -5,6 +5,8 @@ before_script:
   - echo "For example you might run an update here or install a build dependency"
   - echo "Or perhaps you might print out some debugging details"
   - ip addr
+  - pwd
+  - ls -al
   - cat a.txt
 
 
