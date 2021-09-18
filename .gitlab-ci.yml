@@ -1,12 +1,9 @@
-image: ubuntu:latest
+image: maven:3.8-openjdk-8-slim
 
 before_script:
   - echo "Before script section"
   - echo "For example you might run an update here or install a build dependency"
   - echo "Or perhaps you might print out some debugging details"
-  - apt-get update
-  - docker info
-  - mvn package
 
 
 after_script:
@@ -17,7 +14,6 @@ after_script:
 build1:
   stage: build
   script:
-    - docker info
     - mvn package
 
 test1:
