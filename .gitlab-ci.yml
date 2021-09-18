@@ -31,6 +31,7 @@ test2:
 
 deploy1:
   stage: deploy
+  image: kubectl:v1.18.5
   script:
-    - echo "Do your deploy here"
-    - ls -al
+    - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
+    - kubectl -n xiaopang patch deployment nginx -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
