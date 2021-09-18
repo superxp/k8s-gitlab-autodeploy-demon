@@ -6,7 +6,7 @@ before_script:
   - echo "Or perhaps you might print out some debugging details"
   - ip addr
   - pwd
-  - ls -al
+  - ls -al /tmp/
 
 
 
@@ -34,7 +34,7 @@ test2:
   script:
     - echo "Do another parallel test here"
     - echo "For example run a lint test"
-    - ping -c 12 127.0.0.1
+    - cat /tmp/a.txt
 
 deploy1:
   stage: deploy
