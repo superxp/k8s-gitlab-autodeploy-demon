@@ -16,7 +16,7 @@ build1:
   stage: build
   script:
     - echo "Do your build here"
-    - ps -aux
+    - ps -ef
 
 test1:
   stage: test
