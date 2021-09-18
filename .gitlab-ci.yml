@@ -7,7 +7,7 @@ before_script:
   - ip addr
   - pwd
   - ls -al
-  - cat a.txt
+
 
 
 after_script:
@@ -19,14 +19,15 @@ build1:
   stage: build
   script:
     - echo "Do your build here"
-    - ps -ef > a.txt
+    - ps -ef > /tmp/a.txt
 
 test1:
   stage: test
   script:
     - echo "Do a test here"
     - echo "For example run a test suite"
-    - cat a.txt
+    - ls -al /tmp
+    - cat /tmp/a.txt
 
 test2:
   stage: test
