@@ -11,7 +11,7 @@ test1:
   stage: test
   image: docker:stable
   before_script:
-    - source .${CI_COMMIT_REF_NAME}.env
+    - echo "before"
   script:
     - ls -al
     - docker build .
