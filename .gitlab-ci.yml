@@ -15,7 +15,7 @@ test1:
   script:
     - ls -al
     - docker build .
-    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 10.20.0.108:2375
+
     - docker push harbor.sunvalley.com.cn/danya/necho/demo-0.0.1-SNAPSHOT.jar
     - echo "Do a test here"
     - echo "For example run a                                                                                                 test suite"
