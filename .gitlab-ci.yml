@@ -16,7 +16,7 @@ test1:
     - ls -al
     - docker build .
 
-    - docker push harbor.sunvalley.com.cn/danya/necho/demo-0.0.1-SNAPSHOT.jar
+    - docker push harbor.sunvalley.com.cn/danya/necho/demo-0.0.1.jar
     - echo "Do a test here"
     - echo "For example run a                                                                                                 test suite"
 
