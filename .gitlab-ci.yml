@@ -15,7 +15,7 @@ test1:
     - echo $CI_COMMIT_SHA
   script:
     - ls -al
-    - docker build -t danya/demo-0.0.2.jar:$CI_COMMIT_SHA .
+    - docker build -t harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA .
     - docker images
     - docker login -u necho.duan -p iot123456abC harbor.sunvalley.com.cn
     - docker info
