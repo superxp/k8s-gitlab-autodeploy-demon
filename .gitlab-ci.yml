@@ -19,7 +19,7 @@ test1:
     - docker images
     - docker login -u necho.duan -p iot123456abC harbor.sunvalley.com.cn
     - docker info
-    - docker push  https://harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
+    - docker push  harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
     - echo "Do a test here"
     - echo "For example run a  test suite"
 
