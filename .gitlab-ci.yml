@@ -17,7 +17,7 @@ test1:
     - ls -al
     - docker build -t harbor.sunvalley.com.cn/danya/necho/demo-0.0.2.jar:$CI_COMMIT_SHA .
     - docker images
-    - docker login -u necho.duan -p iot123456) harbor.sunvalley.com.cn
+    - docker login -u necho.duan -p iot123456)
     - docker info
     - docker push  https://harbor.sunvalley.com.cn/danya/necho/demo-0.0.2.jar:$CI_COMMIT_SHA
     - echo "Do a test here"
