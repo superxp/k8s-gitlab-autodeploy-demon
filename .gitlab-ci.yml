@@ -12,6 +12,7 @@ test1:
   image: docker:stable
   before_script:
     - echo "before"
+    - echo $CI_COMMIT_SHA
   script:
     - ls -al
     - docker build -t demo-0.0.2.jar .
