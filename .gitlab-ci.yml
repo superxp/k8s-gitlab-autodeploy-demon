@@ -33,7 +33,7 @@ k8s deploy:
   stage: deploy
   image: istio/kubectl:1.5.10
   script:
-    - yum install gettext -y
+    - apt install gettext -y
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - export NAMESPACE=xiaopang
     - export REPLICAS=2
