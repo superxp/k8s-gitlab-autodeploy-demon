@@ -36,7 +36,8 @@ K8S DEPLOY阶段
   
   
   
-  
+  ![image](https://user-images.githubusercontent.com/3622808/134641192-f402d416-0928-4635-ab98-38a733acae84.png)
+
 
      
   
