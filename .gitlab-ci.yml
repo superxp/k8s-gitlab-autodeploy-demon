@@ -36,10 +36,12 @@ k8s deploy:
   stage: deploy
   image: istio/kubectl:1.5.10
   script:
+    ## 安装envsubst
     - apt-get update && apt-get install -y gettext-base
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - export NAMESPACE=xiaopang
     - export REPLICAS=2
     - export IMAGE=$REGISTRY_DOMAN/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
+    ## envsubst 环境变量替换YAML中的
     - envsubst < deploy.yaml | kubectl apply -f -
     ## - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"demon","image":harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA,"env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'

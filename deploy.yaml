@@ -16,6 +16,7 @@ spec:
       containers:
         - image: ${IMAGE}
           imagePullPolicy: Always
+          ## 做一个前台守护进程，防止不断重启
           command: [ "/bin/bash", "-c", "--" ]  ##
           args: [ "while true; do sleep 30; done;" ]
           name: demon
