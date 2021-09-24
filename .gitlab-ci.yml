@@ -3,6 +3,7 @@ maven build:
   image: maven:3.8-openjdk-8-slim
   script:
     - mvn package -Dmaven.test.skip=true
+  ## 在不同的STAGE传输文件
   artifacts:
     paths:
       - target/*.jar
@@ -12,14 +13,16 @@ docker build and push:
   image: docker:stable
   before_script:
     - echo "before docker build and push "
+    ## 打印GIT 提交的版本号
     - echo $CI_COMMIT_SHA
   script:
     - ls -al
-    - docker build -t harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA .
-    ## - docker images
-    - docker login -u necho.duan -p iot123456abF harbor.sunvalley.com.cn
-    ## - docker info
-    - docker push  harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
+
+    - docker build -t $REGISTRY_DOMAN/danya/demo-0.0.2.jar:$CI_COMMIT_SHA .
+    ## 登录到HARBOR
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $REGISTRY_DOMAN
+    ## 推送到DOCKER私仓
+    - docker push  $REGISTRY_DOMAN/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
     - echo " push success !"
 
 
@@ -37,6 +40,6 @@ k8s deploy:
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
     - export NAMESPACE=xiaopang
     - export REPLICAS=2
-    - export IMAGE=harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
+    - export IMAGE=$REGISTRY_DOMAN/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
     - envsubst < deploy.yaml | kubectl apply -f -
     ## - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"demon","image":harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA,"env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
