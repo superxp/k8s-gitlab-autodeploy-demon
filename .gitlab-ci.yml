@@ -34,5 +34,5 @@ k8s deploy:
   image: istio/kubectl:1.5.10
   script:
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
-    - kubectl apply -f .
+    - kubectl apply -f deploy.yaml
     ## - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"demon","image":harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA,"env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
