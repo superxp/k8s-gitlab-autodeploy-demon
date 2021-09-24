@@ -1,4 +1,4 @@
-build1:
+maven build:
   stage: build
   image: maven:3.8-openjdk-8-slim
   script:
@@ -7,31 +7,32 @@ build1:
     paths:
       - target/*.jar
 
-test1:
+docker build and push:
   stage: test
   image: docker:stable
   before_script:
-    - echo "before"
+    - echo "before docker build and push "
     - echo $CI_COMMIT_SHA
   script:
     - ls -al
     - docker build -t harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA .
-    - docker images
-    - docker login -u necho.duan -p iot123456abC harbor.sunvalley.com.cn
-    - docker info
+    ## - docker images
+    - docker login -u necho.duan -p iot123456abF harbor.sunvalley.com.cn
+    ## - docker info
     - docker push  harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
-    - echo "Do a test here"
-    - echo "For example run a  test suite"
+    - echo " push success !"
 
-test2:
+
+do task:
   stage: test
   script:
     - echo "Do another parallel test here"
     - echo "For example run a lint test"
 
-deploy1:
+k8s deploy:
   stage: deploy
   image: istio/kubectl:1.5.10
   script:
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
-    - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","image":"nginx:1.7.9","env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
+    - kubectl apply -f .
+    ## - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"demon","image":harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA,"env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
