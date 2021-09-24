@@ -18,7 +18,7 @@ spec:
           imagePullPolicy: Always
           name: demon
           ports:
-            - containerPort: 3000
+            - containerPort: 3414
           resources:
             requests:
               memory: "800Mi"
