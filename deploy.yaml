@@ -16,6 +16,8 @@ spec:
       containers:
         - image: ${IMAGE}
           imagePullPolicy: Always
+          command: [ "/bin/bash", "-c", "--" ]
+          args: [ "while true; do sleep 30; done;" ]
           name: demon
           ports:
             - containerPort: 3414
