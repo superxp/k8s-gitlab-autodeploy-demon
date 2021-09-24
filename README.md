@@ -18,8 +18,20 @@
   kube_config：KubeConfig的编码字符串。
 
 
+maven build阶段
+
+![image](https://user-images.githubusercontent.com/3622808/134640635-42ea620e-c6cc-472e-b40c-92f8d66bad6c.png)
 
 
+docker build and push阶段
+
+![image](https://user-images.githubusercontent.com/3622808/134640757-630aa32c-df04-4845-805b-8c64420c0244.png)
+
+![image](https://user-images.githubusercontent.com/3622808/134640973-ddadedd2-d2b3-41b9-8e8e-8321ab6411cf.png)
+
+K8S DEPLOY阶段
+
+![image](https://user-images.githubusercontent.com/3622808/134641083-8af7c43e-e5cf-455e-ba4e-1fc6cf6ec1d7.png)
   
   
   
