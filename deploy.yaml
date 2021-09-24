@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demon
+  namespace: ${NAMESPACE}
+spec:
+  replicas: ${REPLICAS}
+  selector:
+    matchLabels:
+      app: demon
+  template:
+    metadata:
+      labels:
+        app: demon
+    spec:
+      containers:
+        - image: ${IMAGE}
+          imagePullPolicy: Always
+          name: demon
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "800Mi"
+            limits:
+              memory: "1300Mi"
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 3000
+            initialDelaySeconds: 60
+            timeoutSeconds: 10
+            periodSeconds: 20
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 3000
+            initialDelaySeconds: 200
+            timeoutSeconds: 10
+            periodSeconds: 5
