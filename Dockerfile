@@ -7,5 +7,5 @@
    && mkdir -p /data/nboot-service
   COPY /target/demo-0.0.1-SNAPSHOT.jar /data/nboot-service/
   WORKDIR /data/nboot-service/
-  EXPOSE 3000
+  EXPOSE 3414
   ENTRYPOINT java  -jar demo-0.0.1-SNAPSHOT.jar
