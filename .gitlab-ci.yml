@@ -38,5 +38,6 @@ k8s deploy:
     - export NAMESPACE=xiaopang
     - export REPLICAS=2
     - export IMAGE=harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
+    - cat /etc/issue
     - envsubst < deploy.yaml | echo
     ## - kubectl -n xiaopang patch deployment nginx-xiaopang-deployment -p '{"spec":{"template":{"spec":{"containers":[{"name":"demon","image":harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA,"env":[{"name":"RESTART_TIME","value":"'$(date +%s)'"}]}]}}}}'
