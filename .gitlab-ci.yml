@@ -34,7 +34,7 @@ k8s deploy:
   image: istio/kubectl:1.5.10
   script:
     - mkdir $HOME/.kube && cat $KUBE_CONFIG > $HOME/.kube/config
-    - export NAMESPACE=danya-dev
+    - export NAMESPACE=xiaopang
     - export REPLICAS=2
     - export IMAGE=harbor.sunvalley.com.cn/danya/demo-0.0.2.jar:$CI_COMMIT_SHA
     - envsubst < deploy.yaml | kubectl apply -f -
